@@ -1,0 +1,30 @@
+http:
+  routers:
+    frontend:
+      rule: "Host(`estudiopws.com`)"
+      service: frontend
+      entryPoints:
+        - web
+        - websecure
+      tls:
+        certResolver: letsencrypt
+
+    backend:
+      rule: "Host(`api.estudiopws.com`)"
+      service: backend
+      entryPoints:
+        - web
+        - websecure
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    frontend:
+      loadBalancer:
+        servers:
+          - url: "http://frontend:80"
+
+    backend:
+      loadBalancer:
+        servers:
+          - url: "http://backend:3000"
