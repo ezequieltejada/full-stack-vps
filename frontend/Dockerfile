@@ -1,5 +1,5 @@
 # Use official Node.js image
-FROM node:18 as build
+FROM node:18 AS build
 WORKDIR /app
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm install

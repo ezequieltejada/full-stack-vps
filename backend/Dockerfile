@@ -1,5 +1,5 @@
 # Use official Bun image
-FROM oven/bun:1.0 as build
+FROM oven/bun:1.0 AS build
 WORKDIR /app
 COPY backend/package.json backend/bun.lockb ./
 RUN bun install
