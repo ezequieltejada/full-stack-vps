@@ -1,6 +1,3 @@
-api:
-  dashboard: true
-
 entryPoints:
   web:
     address: ":80"
@@ -10,14 +7,11 @@ entryPoints:
 providers:
   docker:
     exposedByDefault: false
-  file:
-    directory: "/etc/traefik/dynamic"
-    watch: true
 
 certificatesResolvers:
   letsencrypt:
     acme:
       email: backoffice@estudiopws.com
-      storage: /etc/traefik/acme.json
+      storage: /acme.json
       httpChallenge:
         entryPoint: web
