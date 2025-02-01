@@ -1,16 +1,20 @@
-# # Use official Bun image
-# FROM oven/bun:1.0 AS build
-# WORKDIR /app
-# COPY backend/package.json backend/bun.lockb ./
-# RUN bun install
-# COPY backend/ .
-# RUN bun run build
+# Use the official Bun image
+FROM oven/bun:slim
 
-# # Use a minimal image for production
-# FROM oven/bun:1.0
-# WORKDIR /app
-# COPY --from=build /app/dist .
-# EXPOSE 3000
-# CMD ["bun", "start"]
+# Set the working directory
+WORKDIR /app
 
-FROM hello-world
+# Copy package.json and bun.lock
+COPY package.json bun.lock ./
+
+# Install dependencies
+RUN bun install
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the port the app will run on
+EXPOSE 3000
+
+# Start the app
+CMD ["bun", "start"]
